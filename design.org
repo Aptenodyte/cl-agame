@@ -1,0 +1,33 @@
+* Game
+  + The Necromancer has the following moves:
+* Engine
+** Modules
+   + other stuff if I get the time
+   + Shell (base module)
+   + Project creation wizard
+     - different gametypes
+       - puzzle
+       - stealth
+       - turn based strategy
+       - turn based tactics
+       - card games
+       - adventure games
+       - interactive fiction
+       - rpgs
+** DSL
+   + should be lispy
+     - but less parens :(
+     - standard, modular invocation
+     - easy to access help and info
+     - some sort of "reveal all current tree options" command
+     - rather than trying to understand and execute by default, should focus on exact input, making such input easy to understand/determine
+** 
+
+Engine Modes:
+ * Adventure
+  > movement
+  > inventory
+  > use
+  > cast spells
+ * Combat
+ * Card Game
