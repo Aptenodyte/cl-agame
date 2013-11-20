@@ -43,9 +43,9 @@ Eventually there may be a project creation wizard.
 	 ))
 |#
 
-(defun my-read-and-exec ()
-  "a custom READ command"
-  (let ((my-input (read)))
+(defun my-read-and-exec () ; may be split into read and execute functions
+  "a custom read and execute command"
+  (let ((my-input (read-line)))
     (cond ((equal my-input "help") (my-help)) ; this should eventually scan through a list of associated words for each command
 	  ((equal my-input "quit") (my-quit))
 	  (t (print "I don't understand")))
