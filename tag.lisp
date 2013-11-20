@@ -27,24 +27,40 @@ Eventually there may be a project creation wizard.
   ;; take commands
   ;; do something with them
   ;; loop
+  (setf finished? nil)
   (princ *base-prompt*)
   (my-read-and-exec)
+  (print finished?)
   (if (eql finished? nil)
       (my-shell)
       )
   )
 
-; (defmacro eql-case (
+#|
+(defmacro eql-case (keyform &rest args) ; args should be a list, 
+  "case branching with eql"
+  `(cond ((eql ,keyform (nth 1 ,args)) (nth 2 ,args))
+	 ))
+|#
 
 (defun my-read-and-exec ()
   "a custom READ command"
   (let ((my-input (read)))
+    (cond ((equal my-input "help") (my-help)) ; this should eventually scan through a list of associated words for each command
+	  ((equal my-input "quit") (my-quit))
+	  (t (print "I don't understand")))
+;    (princ my-input)
+    )
+  )
+
+#|
     (case my-input
       ("help" (my-help)) ; this should automagically load from an alist or something - perhaps a hash key tied to a cons cell?
       ("quit" (my-quit)) ; the commands should all be lumped into a "logic" file. Add structure later, though.
       (otherwise (princ my-input)))
     )
   )
+|#
 
 ; (princ "I don't understand")))
 
