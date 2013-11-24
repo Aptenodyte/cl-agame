@@ -69,10 +69,7 @@ Eventually there may be a project creation wizard.
   ; for now, print a list of available commands. Make a dedicated cmd for this later.
   (princ "your available commands are:")
   (terpri)
-  (princ "help")
-  (terpri)
-  (princ "quit")
-  (terpri)
+  (princ *command-list*)
   )
 
 (defun my-quit ()
