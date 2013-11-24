@@ -69,7 +69,11 @@ Eventually there may be a project creation wizard.
   ; for now, print a list of available commands. Make a dedicated cmd for this later.
   (princ "your available commands are:")
   (terpri)
-  (princ *command-list*)
+  (loop for i
+     from 0
+     do (princ (nth i *command-list*))
+     until (= i (1- (length *command-list*)))
+       )
   )
 
 (defun my-quit ()
