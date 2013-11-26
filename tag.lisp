@@ -13,8 +13,16 @@ Eventually there may be a project creation wizard.
   "a hash table of all the valid commands"
   )
 
+(defparameter *shell-commands*  ;; an alist combining command name, 
+  "commands for the shell"
+  )
+
+(defparameter *game-commands* "a path" ;;
+  "commands for the game"
+  )
+
 (defparameter *command-list* '(("quit")("help"))
-  "a list of all the valid commands"
+  "a list of all the valid commands" ; should eventually just point to the correct lists?
   )
 
 (defvar finished? nil ; this should eventually be done locally within my-shell
@@ -36,12 +44,17 @@ Eventually there may be a project creation wizard.
       )
   )
 
-#|
-(defmacro eql-case (keyform &rest args) ; args should be a list, 
-  "case branching with eql"
-  `(cond ((eql ,keyform (nth 1 ,args)) (nth 2 ,args))
-	 ))
-|#
+(defun my-parse (input valid-options) ; should implement a search of the list
+  "checks if input is among the valid-options list"
+  (loop for i
+       from 0
+       do (if (equal input (nth i valid-options)) 
+	      (return (nth i valid-options)))
+       until (= i (1- (length valid-options)))
+       )
+  ;; match to synonym-list later
+  )
+
 
 (defun my-read-and-exec () ; may be split into read and execute functions
   "a custom read and execute command"
@@ -49,20 +62,8 @@ Eventually there may be a project creation wizard.
     (cond ((equal my-input "help") (my-help)) ; this should eventually scan through a list of associated words for each command
 	  ((equal my-input "quit") (my-quit))
 	  (t (print "I don't understand")))
-;    (princ my-input)
     )
   )
-
-#|
-    (case my-input
-      ("help" (my-help)) ; this should automagically load from an alist or something - perhaps a hash key tied to a cons cell?
-      ("quit" (my-quit)) ; the commands should all be lumped into a "logic" file. Add structure later, though.
-      (otherwise (princ my-input)))
-    )
-  )
-|#
-
-; (princ "I don't understand")))
 
 (defun my-help ()
   "provides help"
@@ -81,13 +82,6 @@ Eventually there may be a project creation wizard.
   ; for now
   (setf finished? t)
   )
-
-#|
-(defun my-eval (input)
-  "do we really need a custom EVAL command?"
-  (nil))
-|#
-; (defun my-loop)
 
 (defun prompt ()
   "a default prompt"
