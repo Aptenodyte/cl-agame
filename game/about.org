@@ -1,0 +1,30 @@
+* This is a sample game data layout for the CL Text Game system
+** Directory Structure:
+All games based on the engine should use the following directory structure. Items marked with a ! are optional.
+   + <game_name>
+     - engine license file
+     - shell file
+     - about file
+     - package.asd
+     - binary or executable!
+     - invocation or startup script!
+     - game directory
+       - commands.lisp
+       - ai.lisp!
+       - main.lisp
+       - game code license file
+       - readme/about
+     - assets directory
+       - asset license and attribution file
+       - subfolders:
+         - music
+         - image
+         - anim
+         - sfx
+         - voice
+         - movie
+         - text
+         - sprite
+         - other
+       - a splash image or text file
+

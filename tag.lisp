@@ -25,6 +25,13 @@ Eventually there may be a project creation wizard.
   "a list of all the valid commands" ; should eventually just point to the correct lists?
   )
 
+(defparameter *command-do* '(("quit" . (my-quit))
+			     ("help" . (my-help))
+			     )
+  )
+; (defstruct command-do 
+
+
 (defvar finished? nil ; this should eventually be done locally within my-shell
   "is the game over?"
   )
@@ -49,7 +56,7 @@ Eventually there may be a project creation wizard.
   (loop for i
        from 0
        do (if (equal input (nth i valid-options)) 
-	      (return (nth i valid-options)))
+	      (eval (assoc (nth i valid-options) *command-do*)))
        until (= i (1- (length valid-options)))
        )
   ;; match to synonym-list later
