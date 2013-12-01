@@ -28,6 +28,7 @@ Eventually there may be a project creation wizard.
 (defparameter *command-do* '(("quit" . (my-quit))
 			     ("help" . (my-help))
 			     )
+  "a list of commands, binding them to a specific function" ; this should be replaced by generic functions or some other data structure, and moved to a seperate file
   )
 ; (defstruct command-do 
 
@@ -51,12 +52,17 @@ Eventually there may be a project creation wizard.
       )
   )
 
+(defun str= (str symbol)
+  "returns true if string is equivalent to symbol name"
+  (equal str symbol)
+  )
+
 (defun my-parse (input valid-options) ; should implement a search of the list
   "checks if input is among the valid-options list"
   (loop for i
        from 0
-       do (if (equal input (nth i valid-options)) 
-	      (eval (assoc (nth i valid-options) *command-do*)))
+       do (if (equal input (car (nth i valid-options)))
+	      (eval (cdr *command-do*)))
        until (= i (1- (length valid-options)))
        )
   ;; match to synonym-list later
